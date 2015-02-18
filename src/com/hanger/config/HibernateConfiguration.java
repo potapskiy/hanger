@@ -16,6 +16,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
+
 public class HibernateConfiguration {
 
     @Bean
@@ -31,9 +32,9 @@ public class HibernateConfiguration {
 
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/hanger");
+        ds.setUrl("jdbc:mysql://54.77.197.44:3306/hanger");
         ds.setUsername("root");
-        ds.setPassword("root");
+        ds.setPassword("Wba43gs");
         return ds;
     }
 

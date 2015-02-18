@@ -1,5 +1,10 @@
 package com.hanger.model;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,16 +13,29 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "users", schema = "", catalog = "hanger")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
 
+    @JsonProperty("id")
     private String id;
+    @JsonProperty("first_name")
     private String first_name;
+    @JsonProperty("last_name")
     private String last_name;
+    @JsonProperty("primary_contact")
     private String primary_contact;
-    private String sex;
+    @JsonProperty("sex")
+    private String sex = "undefined";
 
     public User() {}
 
+    public User(String id, String first_name, String last_name, String primary_contact, String sex) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.primary_contact = primary_contact;
+        this.sex = sex;
+    }
 
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
@@ -67,5 +85,16 @@ public class User implements Serializable {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", primary_contact='" + primary_contact + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
     }
 }
